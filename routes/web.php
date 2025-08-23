@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CcustomerControler;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StudentController;
@@ -40,6 +41,9 @@ route::get('/', function(){
 route::get('/about', function(){
 	return view('pages.about');
 });
+Route::get('/customer', [CcustomerControler::class, 'showCustomer']);
+Route::post('/customer', [CcustomerControler::class, 'store']);
+
 
 // Route::get('/', [PageController::class, 'home']);
 //  Route::get('/about', [PageController::class, 'about']);
