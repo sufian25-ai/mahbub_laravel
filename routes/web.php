@@ -4,6 +4,8 @@ use App\Http\Controllers\CcustomerControler;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StudentController;
+use App\Models\Customer;
+use App\Http\Controllers\CastomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,9 @@ Route::get('/contact', function () {
 	return view('contact');
 });
 
+Route::resource('customer', CastomerController::class);
+Route::get('/customer', [CastomerController::class, 'index'])->name('customer.index');
+
 route::get('/', function(){
 	return view('pages.home');
 
@@ -41,8 +46,8 @@ route::get('/', function(){
 route::get('/about', function(){
 	return view('pages.about');
 });
-Route::get('/customer', [CcustomerControler::class, 'showCustomer']);
-Route::post('/customer', [CcustomerControler::class, 'store']);
+// Route::get('/customer', [CcustomerControler::class, 'showCustomer']);
+// Route::post('/customer', [CcustomerControler::class, 'store']);
 
 
 // Route::get('/', [PageController::class, 'home']);

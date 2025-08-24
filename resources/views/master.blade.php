@@ -24,7 +24,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('customer.index') }}">Customer</a>
+                    </li>
+                   
                 <li class="nav-item">
+
                     <a class="nav-link" href="/login">Login</a>
                 </li>
                 <li class="nav-item">   
