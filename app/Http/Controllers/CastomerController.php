@@ -45,7 +45,7 @@ class CastomerController extends Controller
           $file = $request->file('profile_image');
           $filename = 'cust_'. time() . '_' .uniqid(). '.' .$file->getClientOriginalExtension();
             $file->move($uploadpath, $filename);
-            $data['profile_image'] =  '/uploads/customers/'.$filename;
+            $data['profile_image'] =  $filename;
         }
         Customer::create($data);
         return redirect()->route('customer.index')->with('success', 'Customer created successfully.');

@@ -43,22 +43,22 @@ route::get('/', function(){
 	return view('pages.home');
 
 });
-route::get('/about', function(){
-	return view('pages.about');
-});
+// route::get('/about', function(){
+// 	return view('pages.about');
+// });
 // Route::get('/customer', [CcustomerControler::class, 'showCustomer']);
 // Route::post('/customer', [CcustomerControler::class, 'store']);
 
 
 // Route::get('/', [PageController::class, 'home']);
 //  Route::get('/about', [PageController::class, 'about']);
-//  Route::get('/students', [StudentController::class, 'index']);
-// Route::get('/students/create', [StudentController::class, 'create']);
-// Route::post('/students', [StudentController::class, 'store']);
-// Route::get('/students/{id}/edit', [StudentController::class, 'edit']);
-// Route::put('/students/{id}', [StudentController::class, 'update']);
-// Route::delete('/students/{id}', [StudentController::class, 'destroy']);
-// Route::get('/students', [StudentController::class, 'index']);
+ Route::get('/students', [StudentController::class, 'index']);
+Route::get('/students/create', [StudentController::class, 'create']);
+Route::post('/students', [StudentController::class, 'store']);
+Route::get('/students/{id}/edit', [StudentController::class, 'edit']);
+Route::put('/students/{id}', [StudentController::class, 'update']);
+Route::delete('/students/{id}', [StudentController::class, 'destroy']);
+
 
 
 // Route::get('/myarticle', [PageController::class, 'article']);

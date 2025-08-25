@@ -1,7 +1,10 @@
+@extends('master')
+@section('title', 'Student List')
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student List</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
@@ -40,3 +43,5 @@
 
 </body>
 </html>
+@endsection
+

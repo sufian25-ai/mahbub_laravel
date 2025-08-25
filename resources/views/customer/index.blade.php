@@ -19,11 +19,11 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Profile Image</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Address</th>
-                                    <th>Profile Image</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -31,17 +31,18 @@
                                 @foreach ($customer as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->phone }}</td>
-                                        <td>{{ $item->address }}</td>
-                                        <td>
+                                         <td>
                                             @if ($item->profile_image)
-                                                <img src="{{ asset($item->profile_image) }}" alt="Profile Image" width="50" height="50">
+                                                <img src="{{ asset($item->profile_image) }}" alt="Profile Image"  class="rounded-circle" width="70" height="60">
                                             @else
                                                 N/A
                                             @endif
                                         </td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->phone }}</td>
+                                        <td>{{ $item->address }}</td>
+                                       
                                         <td>
                                             <a href="{{ route('customer.show', $item->id) }}" class="btn btn-info btn-sm">View</a>
                                             <a href="{{ route('customer.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
