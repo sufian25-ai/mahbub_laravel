@@ -108,13 +108,16 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-rocket me-2"></i>LaraApp
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <i class="fas fa-rocket me-2"></i>{{ config('app.name', 'LaraApp') }}
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Left Nav -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="/home">
@@ -142,22 +145,49 @@
                         </a>
                     </li>
                 </ul>
+
+                <!-- Right Nav (Authentication) -->
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">
-                            <i class="fas fa-sign-in-alt me-1"></i>Login
-                        </a>
-                    </li>
-                    <li class="nav-item">   
-                        <a class="btn btn-primary rounded-pill px-3 ms-2" href="/register">
-                            <i class="fas fa-user-plus me-1"></i>Register
-                        </a>   
-                    </li>
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    <i class="fas fa-sign-in-alt me-1"></i>Login
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">   
+                                <a class="btn btn-primary rounded-pill px-3 ms-2" href="{{ route('register') }}">
+                                    <i class="fas fa-user-plus me-1"></i>Register
+                                </a>   
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" 
+                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <i class="fas fa-user me-1"></i>{{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt me-1"></i>Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Content -->
     <div class="container">
         <div class="main-content">
             @yield('content')
@@ -177,6 +207,8 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 </body>
 </html>

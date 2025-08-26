@@ -36,13 +36,11 @@ Route::get('/contact', function () {
 	return view('contact');
 });
 
-Route::resource('customer', CastomerController::class);
-Route::get('/customer', [CastomerController::class, 'index'])->name('customer.index');
+// Route::resource('customer', CastomerController::class);
+// Route::get('/customer', [CastomerController::class, 'index'])->name('customer.index');
 
-route::get('/', function(){
-	return view('pages.home');
 
-});
+
 // route::get('/about', function(){
 // 	return view('pages.about');
 // });
@@ -61,17 +59,22 @@ Route::delete('/students/{id}', [StudentController::class, 'destroy']);
 
 
 
-// Route::get('/myarticle', [PageController::class, 'article']);
-// Route::get('/profile/{age}', function($age) {
-// 	return view('testview');
-// })->middleware('checkAge');
-
-// Route::get('/no-access', function(){
-// 	return "You are not allowed to see more";
-// });
 
 
 
 
 
+Route::get('/', fn ()=>  redirect()->route('login'));
 
+
+Auth::routes(['verify'=>true
+
+]);
+
+Route::middleware(['auth', 'verified'])->group(function(){
+
+Route::resource('customer',CastomerController::class);
+
+Route::get('/home', fn()=>redirect()->route('customer.index'))->name('home');
+
+});
